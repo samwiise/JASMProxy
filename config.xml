@@ -1,0 +1,42 @@
+<JASMProxy>
+	<Server>
+		<Listener name="Http Request Listener">
+			<Factory>org.asmmr.jasmproxy.HttpRequestHandlerFactory</Factory>
+			<Port>8082</Port>
+		<!--  	<ForwardProxy host="203.144.160.248" port="9080"/>-->
+		</Listener>
+		<Listener name="Https Request Listener">
+			<Factory handler-keys="SSL,HTTPS,CONNECT">org.asmmr.jasmproxy.SSLRequestHandlerFactory</Factory>
+			<Port>8081</Port>
+		<!--  	<ForwardProxy host="203.144.160.248" port="8080"/>-->
+		</Listener>
+		
+		<Listener name="SOCKs 4 Request Listener">
+			<Factory>org.asmmr.jasmproxy.proxy.requesthandler.SOCKS4RequestHandlerFactory</Factory>
+			<Port>8089</Port>
+		</Listener>
+	
+		<Listener name="Http Request Listener, Forwarding Proxy">
+			<Factory>org.asmmr.jasmproxy.HttpRequestHandlerFactory</Factory>
+			<Port>8087</Port>
+		  	<ForwardProxy host="172.16.0.1" port="9080"/>
+		</Listener>
+		
+		
+		<Listener name="Http Request Listener, Forwarding Proxy">
+			<Factory>org.asmmr.jasmproxy.HttpRequestHandlerFactory</Factory>
+			<Port>9084</Port>
+		  	<ForwardProxy host="203.144.160.248" port="8080"/>
+		</Listener>
+		<Listener name="Https Request Listener, Forwarding Proxy">
+			<Factory>org.asmmr.jasmproxy.SSLRequestHandlerFactory</Factory>
+			<Port>59090</Port>
+		  	<ForwardProxy host="203.144.160.248" port="8080"/>
+		</Listener>
+		
+		
+		<HttpRequestInterceptor class="org.asmmr.jasmproxy.http.interceptors.HttpRequestFilter" />
+		
+		<LoadBalancer seed="2"/>
+	</Server>
+</JASMProxy>
